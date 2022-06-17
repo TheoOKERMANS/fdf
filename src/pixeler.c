@@ -6,7 +6,7 @@
 /*   By: tokerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 14:58:50 by tokerman          #+#    #+#             */
-/*   Updated: 2022/06/17 18:21:45 by tokerman         ###   ########.fr       */
+/*   Updated: 2022/06/17 20:20:31 by tokerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ double	get_sr(int width, t_map *pm)
 		g_sr += pm->width * cos(30 * 3.14159265 / 180);
 		g_sr = width / g_sr;
 	}
+	if (width == 2147483647)
+		g_sr = 2147483647;
 	return (g_sr);
 }
 
@@ -35,16 +37,16 @@ t_map	*init_pix_map(size_t w, size_t h, t_map *pm)
 		return (NULL);
 	res->width = w;
 	res->height = h;
-	res->maxHeight = h + (get_sr(w, pm) * cos(60 * 3.14159265 / 180))
-			* get_uppoint(pm->height, pm->width) * 3;
-	res->map = ft_calloc(1 + res->maxHeight, sizeof(int *));
+	res->max_height = h + (get_sr(w, pm) * cos(60 * 3.14159265 / 180))
+		* get_uppoint(pm->height, pm->width) * 3;
+	res->map = ft_calloc(1 + res->max_height, sizeof(int *));
 	if (!res->map)
 	{
 		free(res);
 		return (NULL);
 	}
 	i = 0;
-	while ((int)i < res->maxHeight)
+	while ((int)i < res->max_height)
 	{
 		res->map[i] = ft_calloc(w + 1, sizeof(int));
 		if (!res->map[i])

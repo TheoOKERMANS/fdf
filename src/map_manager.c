@@ -6,7 +6,7 @@
 /*   By: tokerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 16:34:10 by tokerman          #+#    #+#             */
-/*   Updated: 2022/06/17 18:15:21 by tokerman         ###   ########.fr       */
+/*   Updated: 2022/06/17 20:06:40 by tokerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	color_map(void *im1, t_pos pos, t_map *pix, void *mlx)
 	return (1);
 }
 
-t_map	*get_pix_map(int argc, char **argv)
+t_map	*get_pix_map(int argc, char **argv, int h, int w)
 {
 	int		fd;
 	t_map	*map;
@@ -76,7 +76,8 @@ t_map	*get_pix_map(int argc, char **argv)
 	close(fd);
 	if (!map)
 		return (NULL);
-	pix = pixelize_map(map, 2000, 2000);
+	pix = pixelize_map(map, h, w);
 	free_map(&map);
+	get_sr(2147483647, NULL);
 	return (pix);
 }

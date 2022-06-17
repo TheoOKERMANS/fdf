@@ -6,14 +6,9 @@
 /*   By: tokerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 18:16:36 by tokerman          #+#    #+#             */
-/*   Updated: 2022/06/17 18:25:12 by tokerman         ###   ########.fr       */
+/*   Updated: 2022/06/17 20:22:24 by tokerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-/*
-Securiter calloc
-Norminette
-*/
 
 #include "../include/fdf.h"
 
@@ -60,25 +55,23 @@ int	main(int argc, char **argv)
 {
 	t_map	*pix;
 	void	*mlx;
-	void	*win1;
-	void	*im1;
 	t_vars	vars;
 
-	pix = get_pix_map(argc, argv);
+	pix = get_pix_map(argc, argv, 2000, 2000);
 	if (pix)
 	{
 		mlx = mlx_init();
 		if (!mlx)
 			exit (1);
-		win1 = mlx_new_window(mlx, 2400, 1200, "FDF");
-		im1 = mlx_new_image(mlx, pix->height, pix->width);
-		if (!im1 || !win1)
+		vars.win = mlx_new_window(mlx, 2000, 1200, "FDF");
+		vars.img = mlx_new_image(mlx, pix->height, pix->width);
+		if (!vars.img || !vars.win)
 			exit(1);
-		mlx_clear_window(mlx, win1);
+		mlx_clear_window(mlx, vars.win);
 		vars.mlx = mlx;
-		vars.win = win1;
-		vars.img = im1;
 		vars.pix = &pix;
+		vars.argc = argc;
+		vars.argv = argv;
 		fill_window(pix, &vars);
 		mlx_loop(mlx);
 	}

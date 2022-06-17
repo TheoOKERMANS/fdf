@@ -6,11 +6,6 @@
 #include "../lib/libft/libft.h"
 #include "../lib/minilibx/mlx.h"
 #include "../lib/minilibx/mlx_int.h"
-//
-#include <stdio.h>
-
-#define PI 3.14159265
-#define UP_POINT 1.5
 
 typedef struct	s_map
 {
@@ -18,6 +13,7 @@ typedef struct	s_map
 	int	height;
 	int	**map;
 	int	**color;
+	int	maxHeight;
 }	t_map;
 
 typedef struct	s_pos
@@ -31,6 +27,7 @@ typedef struct	s_vars
 	void	*mlx;
 	void	*win;
 	void	*img;
+	t_map	**pix;
 }	t_vars;
 
 //color
@@ -83,5 +80,4 @@ void	split_to_int_tab(t_list **int_tab, t_list **color, char *buf);
 int	get_highest_num(t_map *pm);
 int	get_lowest_num(t_map *pm);
 
-//https://fr.wikipedia.org/wiki/Algorithme_de_trac%C3%A9_de_segment_de_Bresenham
 #endif

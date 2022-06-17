@@ -6,7 +6,7 @@
 /*   By: tokerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 18:08:24 by tokerman          #+#    #+#             */
-/*   Updated: 2022/06/17 14:33:48 by tokerman         ###   ########.fr       */
+/*   Updated: 2022/06/17 15:14:49 by tokerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,17 @@ t_pos	getpos_pixelmap(int x, int y, t_map *pm)
 
 	mi = get_highest_num(pm);
 	l = get_lowest_num(pm);
-	res.y = (pm->height + y - x) * cos(30 * PI / 180) * get_sr(0, NULL);
-	res.x = (y + x) * get_sr(0, NULL) * cos(60 * PI / 180);
+	res.y = (pm->height + y - x) * cos(30 * 3.14159265 / 180) * get_sr(0, NULL);
+	res.x = (y + x) * get_sr(0, NULL) * cos(60 * 3.14159265 / 180);
 	if (pm->map[x][y] > 0)
-		res.x -= get_sr(0, NULL) * cos(60 * PI / 180)
+		res.x -= get_sr(0, NULL) * cos(60 * 3.14159265 / 180)
 			* (get_uppoint(pm->height, pm->width)
 				* (double)pm->map[x][y] / (double)mi);
 	else if (pm->map[x][y] < 0)
-		res.x += get_sr(0, NULL) * cos(60 * PI / 180)
+		res.x += get_sr(0, NULL) * cos(60 * 3.14159265 / 180)
 			* (get_uppoint(pm->height, pm->width)
 				* (double)pm->map[x][y] / (double)l);
-	res.x += (int)((get_sr(0, NULL) * cos(60 * PI / 180))
+	res.x += (int)((get_sr(0, NULL) * cos(60 * 3.14159265 / 180))
 			* get_uppoint(pm->height, pm->width));
 	return (res);
 }

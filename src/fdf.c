@@ -6,16 +6,13 @@
 /*   By: tokerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 18:16:36 by tokerman          #+#    #+#             */
-/*   Updated: 2022/06/17 13:25:25 by tokerman         ###   ########.fr       */
+/*   Updated: 2022/06/17 18:25:12 by tokerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
 Securiter calloc
-Voir avec Eliot pour le valgrind
 Norminette
-Faire .h clean
-Verifier qu'il n'y a pas de variable globale
 */
 
 #include "../include/fdf.h"
@@ -29,6 +26,7 @@ int	close_win(int keycode, t_vars *vars)
 		mlx_destroy_image(vars->mlx, vars->img);
 		mlx_destroy_display(vars->mlx);
 		free(vars->mlx);
+		free_map(vars->pix);
 		exit(0);
 	}
 	return (0);
@@ -41,6 +39,7 @@ int	close_win_cross(t_vars *vars)
 	mlx_destroy_image(vars->mlx, vars->img);
 	mlx_destroy_display(vars->mlx);
 	free(vars->mlx);
+	free_map(vars->pix);
 	exit(0);
 	return (0);
 }
@@ -79,8 +78,8 @@ int	main(int argc, char **argv)
 		vars.mlx = mlx;
 		vars.win = win1;
 		vars.img = im1;
+		vars.pix = &pix;
 		fill_window(pix, &vars);
 		mlx_loop(mlx);
-		free_map(&pix);
 	}
 }

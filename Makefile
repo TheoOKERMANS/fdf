@@ -19,7 +19,7 @@ $(NAME):
 all: $(NAME)
 
 clean:
-	rm -f $(OBJ)
+	rm -f $(addprefix src/, $(OBJ))
 	make clean -C ./lib/libft
 
 fclean: clean
